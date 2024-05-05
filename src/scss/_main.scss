@@ -1,20 +1,38 @@
 .game-container {
+  $pipes-container-z-index: 432;
+
   width: 100vw;
   height: 100vh;
-  padding: 24px;
+  padding: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.pipes-container {
-  background-color: black;
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
   position: relative;
-}
 
-.pipe {
-  position: absolute;
-  outline: solid 3px white;
+  .debug-tools {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 24px;
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: $pipes-container-z-index + 1;
+
+    .start-point-button {
+      width: 150px;
+    }
+  }
+
+  .pipes-container {
+    background-color: black;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    position: relative;
+    z-index: $pipes-container-z-index;
+
+    .pipe {
+      position: absolute;
+      outline: solid 3px white;
+    }
+  }
 }

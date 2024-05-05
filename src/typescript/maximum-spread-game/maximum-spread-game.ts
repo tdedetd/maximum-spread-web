@@ -15,10 +15,9 @@ export class MaximumSpreadGame {
     private readonly level: Graph,
   ) {
     validateLevel(level);
-    this.drawPipes();
   }
 
-  private drawPipes(): void {
+  public drawPipes(): void {
     const points = this.level.vertices;
     this.level.edges
       .map<[Point, Point]>((edge) => [points[edge[0]], points[edge[1]]])
