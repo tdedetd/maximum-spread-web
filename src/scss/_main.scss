@@ -14,8 +14,6 @@
     top: 0;
     left: 0;
     margin: 24px;
-    padding: 12px;
-    background-color: rgba(0, 0, 0, 0.5);
     z-index: $pipes-container-z-index + 100;
 
     .start-point-button {
@@ -41,7 +39,7 @@
 
     .start-target {
       border-radius: 50%;
-      outline: solid 2px white;
+      background-color: #ff5151;
       z-index: $pipes-container-z-index + 2;
       left: 0;
       top: 0;
