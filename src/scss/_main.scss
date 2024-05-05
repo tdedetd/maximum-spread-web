@@ -16,7 +16,7 @@
     margin: 24px;
     padding: 12px;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: $pipes-container-z-index + 1;
+    z-index: $pipes-container-z-index + 100;
 
     .start-point-button {
       width: 150px;
@@ -30,9 +30,27 @@
     position: relative;
     z-index: $pipes-container-z-index;
 
-    .pipe {
+    & > * {
       position: absolute;
+    }
+
+    .pipe {
       outline: solid 3px white;
+      z-index: $pipes-container-z-index + 1;
+    }
+
+    .start-target {
+      border-radius: 50%;
+      outline: solid 2px white;
+      z-index: $pipes-container-z-index + 2;
+    }
+
+    .mousemove-overlay {
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: $pipes-container-z-index + 99;
     }
   }
 }

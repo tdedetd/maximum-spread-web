@@ -1,15 +1,23 @@
 import { MaximumSpreadGame } from './maximum-spread-game/maximum-spread-game';
+import { MaximumSpreadGameUi } from './maximum-spread-game/maximum-spread-game-ui';
 import { UiConfig } from './models/ui-config.interfacel';
+import { initStartPointButtons } from './utils/init-start-point-buttons';
 
 export function initUi(game: MaximumSpreadGame, {
   pipesContainer,
   placeStartPointButton,
   cancelPlaceStartPointButton
 }: UiConfig): void {
-  initPipesContainer(pipesContainer);
-  initStartButtons(placeStartPointButton, cancelPlaceStartPointButton, game);
+  const maximumSpreadUi = new MaximumSpreadGameUi(game, pipesContainer);
+  maximumSpreadUi.drawPipes();
 
-  game.drawPipes();
+  initPipesContainer(pipesContainer);
+  initStartPointButtons(
+    pipesContainer,
+    placeStartPointButton,
+    cancelPlaceStartPointButton,
+    maximumSpreadUi
+  );
 }
 
 function initPipesContainer(pipesContainer: HTMLDivElement): void {
@@ -28,30 +36,4 @@ function updatePipesContainerSize(container: HTMLDivElement): void {
     container.style.width = 'unset';
     container.style.height = '100%';
   }
-}
-
-function initStartButtons(
-  placeStartPointButton: HTMLButtonElement,
-  cancelPlaceStartPointButton: HTMLButtonElement,
-  game: MaximumSpreadGame
-): void {
-  const setState = (placeMode: boolean): void => {
-    if (placeMode) {
-      placeStartPointButton.classList.add('display-none');
-      cancelPlaceStartPointButton.classList.remove('display-none');
-    } else {
-      placeStartPointButton.classList.remove('display-none');
-      cancelPlaceStartPointButton.classList.add('display-none');
-    }
-  };
-
-  placeStartPointButton.addEventListener('click', () => {
-    setState(true);
-  });
-
-  cancelPlaceStartPointButton.addEventListener('click', () => {
-    setState(false);
-  });
-
-  setState(false);
 }

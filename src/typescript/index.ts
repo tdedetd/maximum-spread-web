@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cancelPlaceStartPointButton = document.querySelector<HTMLButtonElement>('#cancel-place-start-point-button');
 
   if (pipesContainer && placeStartPointButton && cancelPlaceStartPointButton) {
-    const game = new MaximumSpreadGame(pipesContainer, level0);
+    const game = new MaximumSpreadGame(level0);
     initUi(
       game,
       {
