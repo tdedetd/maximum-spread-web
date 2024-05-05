@@ -48,12 +48,8 @@ export class MaximumSpreadGameUi {
       this.container.appendChild(this.startTarget);
     }
 
-    const width = this.container.clientWidth;
-    const height = this.container.clientHeight;
-    const xPercents = offsetX / width * 100;
-    const yPercents = offsetY / height * 100;
-    this.startTarget.style.left = `calc(${xPercents}% - ${this.startTargetRadius}px)`;
-    this.startTarget.style.top = `calc(${yPercents}% - ${this.startTargetRadius}px)`;
+    this.startTarget.style.transform =
+      `translate(${offsetX - this.startTargetRadius}px, ${offsetY - this.startTargetRadius}px)`;
   }
 
   private createMouseOverlay(): void {

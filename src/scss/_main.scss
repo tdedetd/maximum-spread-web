@@ -43,6 +43,8 @@
       border-radius: 50%;
       outline: solid 2px white;
       z-index: $pipes-container-z-index + 2;
+      left: 0;
+      top: 0;
     }
 
     .mousemove-overlay {
