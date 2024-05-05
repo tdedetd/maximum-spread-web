@@ -1,4 +1,4 @@
-import { level0 } from './maximum-spread-game/levels/level-0';
+import { level0 } from './maximum-spread-game/constants/levels/level-0';
 import { MaximumSpreadGame } from './maximum-spread-game/maximum-spread-game';
 
 document.addEventListener('DOMContentLoaded', () => {
