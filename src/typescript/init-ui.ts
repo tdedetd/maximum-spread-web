@@ -1,7 +1,7 @@
 import { MaximumSpreadGame } from './maximum-spread-game/maximum-spread-game';
 import { MaximumSpreadGameUi } from './maximum-spread-game/maximum-spread-game-ui';
 import { UiConfig } from './models/ui-config.interface';
-import { initEntryPointMarkButtons } from './utils/init-start-point-buttons';
+import { initEntryPointMarkButtons } from './utils/init-entry-point-mark-buttons';
 
 export function initUi(game: MaximumSpreadGame, {
   pipesContainer,

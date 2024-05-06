@@ -23,6 +23,13 @@ export class MaximumSpreadGameUi {
     this.entryPointDetails.clear();
   }
 
+  public confirmCurrentEntryPoint(): void {
+    const entryPoint = this.entryPointDetails.getEntryPoint();
+    if (entryPoint) {
+      this.game.addPlayer(entryPoint);
+    }
+  }
+
   public drawVerticesIndexes(): void {
     this.level.vertices.forEach((vertex, index) => {
       const label = document.createElement('p');

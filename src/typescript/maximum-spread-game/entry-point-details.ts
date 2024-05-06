@@ -3,11 +3,12 @@ import { Point } from '../models/geometry/point.interface';
 import { getDistance } from '../utils/get-distance';
 import { getNearestPointToLine } from '../utils/get-nearest-point-to-line';
 import { MaximumSpreadGame } from './maximum-spread-game';
+import { EntryPoint } from './models/entry-point.interface';
 
 export class EntryPointDetails {
+  private edgeIndex: number | null = null;
   private mark: HTMLDivElement | null = null;
   private nearestPointToPipes: Point | null = null;
-  private nearestPoinEdgeIndex: number | null = null;
 
   private get level(): Graph {
     return this.game.level;
@@ -22,10 +23,23 @@ export class EntryPointDetails {
   public clear(): void {
     if (this.mark) {
       this.container.removeChild(this.mark);
+      this.edgeIndex = null;
       this.mark = null;
       this.nearestPointToPipes = null;
-      this.nearestPoinEdgeIndex = null;
     }
+  }
+
+  public getEntryPoint(): EntryPoint | null {
+    if (this.edgeIndex === null || !this.nearestPointToPipes) {
+      return null;
+    }
+
+    const edge = this.level.edges[this.edgeIndex];
+    const edgeVertices: [Point, Point] = [this.level.vertices[edge[0]], this.level.vertices[edge[1]]];
+    const position = (getDistance(edgeVertices[0], this.nearestPointToPipes))
+      / (getDistance(edgeVertices[0], edgeVertices[1]));
+
+    return { pipeIndex: this.edgeIndex, position };
   }
 
   public placeMark(offsetX: number, offsetY: number): void {
@@ -68,7 +82,7 @@ export class EntryPointDetails {
       if (distance < minDistance) {
         minDistance = distance;
         nearestPointToPipes = nearestPointToCurrentPipe;
-        this.nearestPoinEdgeIndex = edgeIndex;
+        this.edgeIndex = edgeIndex;
       }
     });
 

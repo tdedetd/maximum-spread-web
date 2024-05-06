@@ -1,4 +1,5 @@
 import { MaximumSpreadGameUi } from '../maximum-spread-game/maximum-spread-game-ui';
+import { isTouchScreen } from './is-touch-screen';
 
 export function initEntryPointMarkButtons(
   pipesContainer: HTMLDivElement,
@@ -14,6 +15,12 @@ export function initEntryPointMarkButtons(
     gameUi.clearEntryPointMark();
   };
 
+  const clickListenerForConfirmation = () => {
+    if (!isTouchScreen()) {
+      gameUi.confirmCurrentEntryPoint();
+    }
+  };
+
   const setState = (placeMode: boolean): void => {
     if (placeMode) {
       placeStartPointButton.classList.add('display-none');
@@ -21,12 +28,14 @@ export function initEntryPointMarkButtons(
 
       pipesContainer.addEventListener('mousemove', mouseMoveListenerForMark);
       pipesContainer.addEventListener('mouseout', mouseOutListenerForMark);
+      pipesContainer.addEventListener('click', clickListenerForConfirmation);
     } else {
       placeStartPointButton.classList.remove('display-none');
       cancelPlaceStartPointButton.classList.add('display-none');
 
       pipesContainer.removeEventListener('mousemove', mouseMoveListenerForMark);
       pipesContainer.removeEventListener('mouseout', mouseOutListenerForMark);
+      pipesContainer.removeEventListener('click', clickListenerForConfirmation);
       gameUi.clearEntryPointMark();
     }
   };
