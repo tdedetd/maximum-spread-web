@@ -23,7 +23,7 @@ export function validateLevel(level: Graph): void {
     const y1 = vertices[edge[1]].y;
     if (x0 !== x1 && y0 !== y1) {
       throw new NonStrictlyStrightEdgeLevelMaximumSpreadError(
-        `Pipe is not strictly stright. [(${x0}, ${y0}); (${x1}, ${y1})]`
+        `The pipe is not strictly stright. [(${x0}, ${y0}); (${x1}, ${y1})]`
       );
     }
 
@@ -38,7 +38,7 @@ export function validateLevel(level: Graph): void {
       .map(vertex => `(${vertex.x}, ${vertex.y})`)
       .join('; ');
 
-    throw new IsolatedVertexLevelMaximumSpreadError(`Level has isolated vertices: [${str}]`);
+    throw new IsolatedVertexLevelMaximumSpreadError(`The level has isolated vertices: [${str}]`);
   }
 }
 

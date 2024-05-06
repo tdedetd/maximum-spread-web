@@ -10,6 +10,7 @@ export function initUi(game: MaximumSpreadGame, {
 }: UiConfig): void {
   const maximumSpreadUi = new MaximumSpreadGameUi(game, pipesContainer);
   maximumSpreadUi.drawPipes();
+  maximumSpreadUi.drawVerticesIndexes();
 
   initPipesContainer(pipesContainer);
   initStartPointButtons(

@@ -6,7 +6,7 @@ import { getNearestPointToLine } from '../utils/get-nearest-point-to-line';
 import { MaximumSpreadGame } from './maximum-spread-game';
 
 export class MaximumSpreadGameUi {
-  private readonly startTargetRadius: number = 10;
+  private readonly startTargetLength: number = 40;
   private startTarget: HTMLDivElement | null = null;
 
   private get level(): Graph {
@@ -26,6 +26,17 @@ export class MaximumSpreadGameUi {
       this.container.removeChild(this.startTarget);
       this.startTarget = null;
     }
+  }
+
+  public drawVerticesIndexes(): void {
+    this.level.vertices.forEach((vertex, index) => {
+      const label = document.createElement('p');
+      label.classList.add('vertex-index');
+      label.innerText = String(index);
+      label.style.left = `calc(${vertex.x / this.game.gameWidth * 100}% + 4px)`;
+      label.style.top = `calc(${vertex.y / this.game.gameHeight * 100}% + 10px)`;
+      this.container.appendChild(label);
+    });
   }
 
   public drawPipes(): void {
@@ -51,15 +62,15 @@ export class MaximumSpreadGameUi {
 
   public placeStartTarget(offsetX: number, offsetY: number): void {
     if (!this.startTarget) {
-      this.startTarget = generateStartTarget(this.startTargetRadius);
+      this.startTarget = generateStartTarget(this.startTargetLength);
       this.container.appendChild(this.startTarget);
     }
 
     const gameX = offsetX / this.container.clientWidth * this.game.gameWidth;
     const gameY = offsetY / this.container.clientHeight * this.game.gameHeight;
     const targetCoords = this.getNearestPointToPipes({ x: gameX, y: gameY });
-    const pxX = targetCoords.x / this.game.gameWidth * this.container.clientWidth - this.startTargetRadius;
-    const pxY = targetCoords.y / this.game.gameHeight * this.container.clientHeight - this.startTargetRadius;
+    const pxX = targetCoords.x / this.game.gameWidth * this.container.clientWidth - this.startTargetLength / 2;
+    const pxY = targetCoords.y / this.game.gameHeight * this.container.clientHeight - this.startTargetLength / 2;
     this.startTarget.style.transform = `translate(${pxX}px, ${pxY}px)`;
   }
 

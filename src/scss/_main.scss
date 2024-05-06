@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 .game-container {
   $pipes-container-z-index: 432;
 
@@ -33,16 +35,39 @@
     }
 
     .pipe {
-      outline: solid 3px white;
+      outline: solid 4px white;
       z-index: $pipes-container-z-index + 1;
     }
 
-    .start-target {
-      border-radius: 50%;
-      background-color: #ff5151;
+    .vertex-index {
+      color: white;
       z-index: $pipes-container-z-index + 2;
+    }
+
+    .start-target {
+      z-index: $pipes-container-z-index + 3;
       left: 0;
       top: 0;
+      position: relative;
+
+      &::before, &::after {
+        $line-width: 4px;
+        content: '';
+        position: absolute;
+        background-color: #ffef77;
+        width: 100%;
+        height: $line-width;
+        left: 0;
+        top: calc(50% - math.div($line-width, 2));
+      }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
     }
 
     .mousemove-overlay {
