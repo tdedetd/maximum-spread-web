@@ -1,7 +1,7 @@
 import { MaximumSpreadGame } from './maximum-spread-game/maximum-spread-game';
 import { MaximumSpreadGameUi } from './maximum-spread-game/maximum-spread-game-ui';
 import { UiConfig } from './models/ui-config.interface';
-import { initStartPointButtons } from './utils/init-start-point-buttons';
+import { initEntryPointMarkButtons } from './utils/init-start-point-buttons';
 
 export function initUi(game: MaximumSpreadGame, {
   pipesContainer,
@@ -13,7 +13,7 @@ export function initUi(game: MaximumSpreadGame, {
   maximumSpreadUi.drawVerticesIndexes();
 
   initPipesContainer(pipesContainer);
-  initStartPointButtons(
+  initEntryPointMarkButtons(
     pipesContainer,
     placeStartPointButton,
     cancelPlaceStartPointButton,

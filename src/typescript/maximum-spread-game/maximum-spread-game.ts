@@ -4,10 +4,10 @@ import { validateLevel } from './utils/validate-level';
 export class MaximumSpreadGame {
 
   /** Width in meters */
-  public readonly gameWidth = 40;
+  public readonly fieldWidth = 40;
 
   /** Height in meters */
-  public readonly gameHeight = 30;
+  public readonly fieldHeight = 30;
 
   constructor(
     public readonly level: Graph,

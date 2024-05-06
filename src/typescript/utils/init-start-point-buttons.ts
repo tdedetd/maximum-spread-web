@@ -1,17 +1,17 @@
 import { MaximumSpreadGameUi } from '../maximum-spread-game/maximum-spread-game-ui';
 
-export function initStartPointButtons(
+export function initEntryPointMarkButtons(
   pipesContainer: HTMLDivElement,
   placeStartPointButton: HTMLButtonElement,
   cancelPlaceStartPointButton: HTMLButtonElement,
   gameUi: MaximumSpreadGameUi
 ): void {
-  const mouseMoveListenerForTarget = (event: MouseEvent) => {
-    gameUi.placeStartTarget(event.offsetX, event.offsetY);
+  const mouseMoveListenerForMark = (event: MouseEvent) => {
+    gameUi.placeEntryPointMark(event.offsetX, event.offsetY);
   };
 
-  const mouseOutListenerForTarget = () => {
-    gameUi.clearStartTarget();
+  const mouseOutListenerForMark = () => {
+    gameUi.clearEntryPointMark();
   };
 
   const setState = (placeMode: boolean): void => {
@@ -19,15 +19,15 @@ export function initStartPointButtons(
       placeStartPointButton.classList.add('display-none');
       cancelPlaceStartPointButton.classList.remove('display-none');
 
-      pipesContainer.addEventListener('mousemove', mouseMoveListenerForTarget);
-      pipesContainer.addEventListener('mouseout', mouseOutListenerForTarget);
+      pipesContainer.addEventListener('mousemove', mouseMoveListenerForMark);
+      pipesContainer.addEventListener('mouseout', mouseOutListenerForMark);
     } else {
       placeStartPointButton.classList.remove('display-none');
       cancelPlaceStartPointButton.classList.add('display-none');
 
-      pipesContainer.removeEventListener('mousemove', mouseMoveListenerForTarget);
-      pipesContainer.removeEventListener('mouseout', mouseOutListenerForTarget);
-      gameUi.clearStartTarget();
+      pipesContainer.removeEventListener('mousemove', mouseMoveListenerForMark);
+      pipesContainer.removeEventListener('mouseout', mouseOutListenerForMark);
+      gameUi.clearEntryPointMark();
     }
   };
 
